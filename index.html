@@ -3,29 +3,31 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Página de Redirecionamento</title>
+    <title>Redirecionamento</title>
 </head>
 <body>
     <h1>Redirecionando...</h1>
 
     <script>
-        // Função para pegar os parâmetros da URL
+        // Função que vai pegar os parâmetros da URL
         function getQueryParams() {
             const params = new URLSearchParams(window.location.search);
             const partner = params.get('partner');
             const referal = params.get('referal');
             
-            // Aqui você pode ajustar o destino com base nos parâmetros
-            let redirectUrl = 'https://example.com'; // Substitua pela URL de destino que você deseja
+            // Se os parâmetros "partner" e "referal" existirem
             if (partner && referal) {
-                redirectUrl = `https://example.com/${partner}?ref=${referal}`;
+                // A URL para onde queremos redirecionar, com base nos parâmetros
+                let redirectUrl = `https://meusite.com/${partner}?ref=${referal}`;
+                // Redireciona para o link
+                window.location.href = redirectUrl;
+            } else {
+                // Caso não tenha parâmetros, redireciona para uma URL padrão
+                window.location.href = 'https://meusite.com/default';
             }
-
-            // Redireciona para a URL final
-            window.location.href = redirectUrl;
         }
 
-        // Chama a função de redirecionamento assim que a página é carregada
+        // Chama a função assim que a página for carregada
         window.onload = getQueryParams;
     </script>
 </body>
